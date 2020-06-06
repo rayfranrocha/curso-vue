@@ -1,0 +1,31 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+
+    <p>{{nome}}</p>
+    <p>{{saudacao()}}</p>
+
+    <!-- v-bind:<atributo>='nomeAtributo' -->
+    <!-- v-bind conecta um atributo da Tag Html a um atributo contido no Vue.data{...} -->
+        <a v-bind:href='linkGoogle'>Google</a>
+
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            nome: 'Rayfran',
+            linkGoogle: 'https://google.com'
+        },
+        methods: {
+            saudacao: function () {
+                //coloca o objeto Vue no console... e o console mostra a LINHA 18 q rodou o comando
+                console.log(this)
+                //coloca o atributo nome do objeto Vue no console... e o console mostra a LINHA 20 q rodou o comando
+                console.log(this.nome)
+                return "Bom dia " + this.nome + "!"
+            }
+        }
+    })
+</script>

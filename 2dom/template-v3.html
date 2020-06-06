@@ -1,0 +1,21 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+
+    <p>{{nome}}</p>
+    <p>{{saudacao()}}</p>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            nome: 'Rayfran'
+        }, 
+        methods: {
+            saudacao : function () {
+                return "Bom dia "+ this.nome + "!"
+            }
+        }
+    })
+</script>

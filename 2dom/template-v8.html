@@ -1,0 +1,33 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+
+    <p>{{linkGoogle}}</p>
+
+    <!-- v-html transforma a String em codigo HTML -->
+
+    <!-- chamada a partir de um atributo -->
+    <p v-html="linkGoogle"></p>
+
+    <!-- chamada a partir de uma funcao -->
+    <p v-html="getLink()"></p>
+
+    <!-- chamada normal a partir de uma string -->
+    <a v-bind:href="url">Google</a>
+
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            linkGoogle: '<a href="https://google.com">Google</>',
+            url: 'https://google.com'
+        },
+        methods: {
+            getLink() {
+                return this.linkGoogle
+            }
+        }
+    })
+</script>

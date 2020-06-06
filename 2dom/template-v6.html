@@ -1,0 +1,33 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+
+    <p v-once>Contador iniciou em {{count}}</p>
+    <p>Valor atual do contador é {{count}}</p>
+    <p>{{saudacao()}}</p> 
+
+    <!-- <p>{{nome}}</p>
+    -->
+
+    <!-- v-bind:<atributo>='nomeAtributo' -->
+    <!-- v-bind conecta um atributo da Tag Html a um atributo contido no Vue.data{...} -->
+        <!-- <a v-bind:href='linkGoogle'>Google</a> -->
+
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            // nome: 'Rayfran',
+            // linkGoogle: 'https://google.com',
+            count: 1
+        },
+        methods: {
+            saudacao: function () {
+                this.count++
+                return "Bom dia ";
+            }
+        }
+    })
+</script>
