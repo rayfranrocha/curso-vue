@@ -1,0 +1,44 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+  <p>{{contador}}</p>
+  <button v-on:click="somar">Somar 1</button>
+  <button v-on:click="somarPasso(5)">Somar +5</button>
+  <button v-on:click="somarPassoComEvent(5, $event)">Somar +5</button>
+  <p v-on:mousemove="mostrarXY">Mouse X: {{x}} e Y: {{y}}</p>
+</div>
+
+<script>
+  new Vue({
+    el: "#app",
+    data: {
+      contador: 0,
+      x: 0,
+      y: 0,
+    },
+    methods: {
+      //toda vez que uso o v-on:<evento>, ele vem como parametro de entrada
+      somar(event) {
+        console.log(event);
+        this.contador++;
+      },
+      //mesmo sem ter passado o evento como parametro, se eu usar a palavra 'event' 
+      //ele pega o evento passado implicitamente
+      somarPasso(passo) {
+        console.log(event, passo);
+        console.log( passo, event);
+        this.contador += passo;
+      },
+      //pra passar o event explicitamente, devemos usar a palavra reservada '$event'
+      somarPassoComEvent(passo, event) {
+        console.log(passo, event);
+        this.contador += passo;
+      },
+      mostrarXY(event) {
+        console.log(event);
+        this.x = event.clientY;
+        this.y = event.clientX;
+      },
+    },
+  });
+</script>
