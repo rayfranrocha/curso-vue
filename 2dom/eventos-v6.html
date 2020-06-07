@@ -70,10 +70,12 @@
         if (this.podeNavegar) {
           this.podeNavegar = false;
           //e nao faz mas nada... ou seja, deixa o comportamento normal seguir o fluxo
+          console.log("navegou pra pagina. Evento normal.")
         } else {
           this.podeNavegar = true;
           //para o comportamento padrao
           event.preventDefault();
+          console.log("NÃO navegou pra pagina. Comportamento default do evento foi evitado (prevented).")
         }
       },
     },
