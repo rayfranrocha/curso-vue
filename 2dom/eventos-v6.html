@@ -1,0 +1,81 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+  <p>{{contador}}</p>
+  <button v-on:click="somar">Somar 1</button>
+  <button v-on:click="somarPasso(5)">Somar +5</button>
+  <button v-on:click="somarPassoComEvent(5, $event)">Somar +5</button>
+  <p v-on:mousemove="mostrarXY">
+    Mouse X: {{x}} e Y: {{y}}
+    <span v-on:mousemove="parar">PARAR AQUI</span>
+  </p>
+  <hr />
+
+  <!-- .stop para a propagacao do evento pra o elemento que utilizou esta diretiva, neste caso o <span> -->
+  <p v-on:mousemove="mostrarXY">
+    Mouse X: {{x}} e Y: {{y}} - modificador de evento 'stop'
+    <span v-on:mousemove.stop>PARAR AQUI</span>
+  </p>
+  <hr />
+  <p><a href="http://google.com">Google</a></p>
+
+  <!-- .prevent, evita a execucao do comportamento default... neste caso o onClick... chamaria a pagina -->
+  <p><a v-on:click.prevent href="http://google.com">Google com prevent</a></p>
+
+  <p>O link abaixo pode navegar: {{podeNavegar}}</p>
+  <p><a v-on:click="naoNavegar" href="http://google.com">Google</a></>
+
+  <!-- poderiamos usar essa funcao pra evitar que um botao do tipo submit fosse executado antes de ter os requisitos
+  minimos atendidos... ex. tela de logina, enquanto nao houver o preenchimento de login+senha, nao faz submit-->
+</div>
+
+<script>
+  new Vue({
+    el: "#app",
+    data: {
+      contador: 0,
+      x: 0,
+      y: 0,
+      podeNavegar: false,
+    },
+    methods: {
+      //toda vez que uso o v-on:<evento>, ele vem como parametro de entrada
+      somar(event) {
+        console.log(event);
+        this.contador++;
+      },
+      //mesmo sem ter passado o evento como parametro, se eu usar a palavra 'event'
+      //ele pega o evento passado implicitamente
+      somarPasso(passo) {
+        console.log(event, passo);
+        console.log(passo, event);
+        this.contador += passo;
+      },
+      //pra passar o event explicitamente, devemos usar a palavra reservada '$event'
+      somarPassoComEvent(passo, event) {
+        console.log(passo, event);
+        this.contador += passo;
+      },
+      mostrarXY(event) {
+        console.log(event);
+        this.x = event.clientY;
+        this.y = event.clientX;
+      },
+      //Os eventos se propagam para os elementos filhos, podemos utilizar 'stopPropagation'
+      //para parar a escuta de um determinado event
+      parar(event) {
+        event.stopPropagation();
+      },
+      naoNavegar() {
+        if (this.podeNavegar) {
+          this.podeNavegar = false;
+          //e nao faz mas nada... ou seja, deixa o comportamento normal seguir o fluxo
+        } else {
+          this.podeNavegar = true;
+          //para o comportamento padrao
+          event.preventDefault();
+        }
+      },
+    },
+  });
+</script>
