@@ -1,0 +1,42 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+
+  <p>Contador: {{contador}}</p>
+  <p>Resultado: {{contador}} * 2: {{contador * 2}}</p>
+  <p>Cont > 5? {{ contador <5 ? 'Nao, ele é menor que 5' : 'Sim'}}</p>
+
+  <p><button v-on:click="somar" >Somar</button></p>
+
+  <hr>
+
+  <p>Tamanho do texto: {{texto.length}}</p>
+
+  <p>[Esc] limpa o texto</p>
+  <p>[Enter] exibe o valor num Alert</p>
+  <p><input v-model="texto" type="text" v-on:keyup.esc="texto=''"
+      v-on:keyup.enter="alertar"></p>
+
+</div>
+
+<script>
+  new Vue({
+    el: "#app",
+    data: {
+      contador: 0,
+      texto: ""
+    },
+    methods: {
+      somar() {
+        this.contador++
+      },
+      limpar(){
+        this.texto = ''
+      },
+      alertar(){
+        alert('clicou enter e o valor é ' + event.target.value)
+      }
+
+    },
+  });
+</script>
