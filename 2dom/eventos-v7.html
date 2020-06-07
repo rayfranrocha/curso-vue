@@ -14,13 +14,13 @@
   <!-- os 2 componentes abaixo, só possuem o v-bind:value, então eles recebem o valor da variavel, 
     quando o valor é modificado nada acontece, pois falta o v-on:input -->
   <p>
-    Clique Enter
-    <input v-bind:value="nome" v-on:keyup.enter="alertar" type="text" />
+    Clique Enter p/ atualizar valor e clique ESC para limpar valor
+    <input v-bind:value="nome" v-on:keyup.enter="alertarEnter" v-on:keyup.esc="limpar" type="text" />
   </p>
 
   <p>
-    Clique Alt + Enter
-    <input v-bind:value="nome" v-on:keyup.enter.alt="alertar" type="text" />
+    Clique Alt + Enter para exibir novo valor do INPUT no alert, sem modificar o valor do atributo
+    <input v-bind:value="nome" v-on:keyup.enter.alt="alertarAltEnter" type="text" />
   </p>
 
   <p>{{nome}}</p>
@@ -33,9 +33,21 @@
       nome: "Rayfran",
     },
     methods: {
-      alertar() {
-        alert("Estou te alertando." + this.nome + event.returnValue);
+      alertarEnter() {
+        //imprime valor antigo
+        console.log("valor antigo: " + this.nome)
+        //atualiza valor
+        this.nome = event.target.value
+        //imprime valor atualizado
+        console.log("valor atualizado: " + this.nome)
+        alert("Você clicou ENTER e o valor é " + this.nome );
       },
+      alertarAltEnter() {
+        alert("Volce cliclou Alt + Enter. O valor é " + event.target.value);
+      },
+      limpar(){
+        this.nome = ""
+      }
     },
   });
 </script>
