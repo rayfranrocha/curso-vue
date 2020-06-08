@@ -1,0 +1,40 @@
+<script src="https://unpkg.com/vue"></script>
+
+<div id="app">
+
+    <p>{{contador}} | {{contador2}}</p>
+    
+    <!-- metodos COMPUTED nao sao chamados como "funcao()", mas apenas o nome "funcao"-->
+    <p>{{resultado}}</p>
+
+    <p><button v-on:click="somar">Somar</button></p>
+    <p><button v-on:click="contador2++">Somar 2</button></p>
+    <p><button v-on:click="diminuir">Diminuir</button></p>
+
+</div>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            contador: 0,
+            contador2: 0
+        },
+        computed: {
+            //usando o COMPUTED, esse metodo só é chamado, caso o 'this.contador' seja alterado
+            resultado() {
+                console.log('Funcao Resultado foi Chamada.')
+                return this.contador < 5 ? "Menor que 5" : "Maior ou igual a 5"
+            }
+        },
+        methods: {
+            somar() {
+                this.contador++
+            },
+            diminuir() {
+                this.contador--
+            },
+        }
+    })
+
+</script>

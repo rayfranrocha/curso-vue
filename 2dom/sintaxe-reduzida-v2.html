@@ -1,0 +1,33 @@
+<script src="https://unpkg.com/vue"></script>
+
+<div id="app">
+    <p>
+        Com v-model
+        <input v-model="nome" />
+    </p>
+
+    <p>
+        Com v-bind + v-on:input (faz a mesma coisa que o v-model)
+        <input v-bind:value="nome" v-on:input="nome = $event.target.value" />
+    </p>
+
+    <p>
+        Com notacao Reduzida
+        <input :value="nome" @input="nome = $event.target.value" />
+    </p>
+
+    <hr>
+    Nome: {{nome}}
+
+</div>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            nome: "Rayfran"        },
+        methods: {
+        }
+    })
+
+</script>

@@ -1,0 +1,32 @@
+<script src="https://unpkg.com/vue"></script>
+
+<div id="app">
+
+    <p>{{contador}}</p>
+    <p>{{resultado}}</p>
+
+    <p><button v-on:click="somar">Somar</button></p>
+    <p><button v-on:click="diminuir">Diminuir</button></p>
+
+</div>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            contador: 0,
+            resultado: 'sem resultado'
+        },
+        methods: {
+            somar() {
+                this.contador++
+                this.resultado = this.contador < 5 ? "Menor que 5" : "Maior ou igual a 5"
+            },
+            diminuir() {
+                this.contador--
+                this.resultado = this.contador < 5 ? "Menor que 5" : "Maior ou igual a 5"
+            }
+        }
+    })
+
+</script>

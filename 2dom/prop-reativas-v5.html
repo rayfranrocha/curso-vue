@@ -1,0 +1,53 @@
+<script src="https://unpkg.com/vue"></script>
+
+<div id="app">
+
+    <p>{{contador}} | {{contador2}}</p>
+    
+    <!-- metodos COMPUTED nao sao chamados como "funcao()", mas apenas o nome "funcao"-->
+    <p>{{resultado}}</p>
+
+    <p><button v-on:click="somar">Somar</button></p>
+    <p><button v-on:click="contador2++">Somar 2</button></p>
+    <p><button v-on:click="diminuir">Diminuir</button></p>
+
+</div>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            contador: 0,
+            contador2: 0
+        },
+        //quando usar o Watch? Por exemplo... temos uma combobox Estado... 
+        //toda vez q eu perceber uma mudança em estadoCorrente, eu chamo uma API para popular a combobox Cidades
+        watch:{
+            contador(novo, antigo){
+                console.log(novo , antigo)
+            },
+            contador2(novo,antigo){
+                //toda vez q houver mudanca no CONTADOR2, o browser esperará 2 segundos e zerará o valor
+                setTimeout( () => {
+                    this.contador2 = 0
+                }, 2000)
+            }
+        },
+        computed: {
+            //usando o COMPUTED, esse metodo só é chamado, caso o 'this.contador' seja alterado
+            resultado() {
+                console.log('Funcao Resultado foi Chamada.')
+                return this.contador < 5 ? "Menor que 5" : "Maior ou igual a 5"
+            }
+        },
+        methods: {
+            somar() {
+                this.contador++
+            },
+            diminuir() {
+                this.contador--
+            },
+        }
+    })
+
+</script>

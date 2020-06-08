@@ -1,0 +1,29 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+
+    <p>{{titulo}}</p>
+    v-bind:value=... -> atualiza do .vue.data.atributo p/ o HTML
+    <p><input type="text" v-bind:value="titulo"> </p>
+
+    v-on:input=... -> atualiza do HTML p/ o .vue.data.atributo
+    <p><input type="text" v-on:input="titulo = $event.target.value"> </p>
+
+    two-way data binding, precisa v-bind:value=... e v-on:input=...
+    <p><input type="text" v-bind:value="titulo" v-on:input="titulo = $event.target.value"> </p>
+
+    v-model="atributo" -> faz o two-way automaticamente
+    <p><input type="text" v-model="titulo"> </p>
+
+    </v-on:input>
+
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            titulo: 'Hello World'
+        }
+    })
+</script>
