@@ -1,0 +1,52 @@
+
+/* Estilo aplicado diretamento numa DIV com ID = 'efeito'*/
+#efeito {
+	width: 100px;
+	height: 100px;
+	border: 1px solid black;
+}
+
+.css1{
+	font-size: 20px;
+}
+
+.css2 {
+	color: brown;
+}
+
+.destaque {
+	background-color: red;
+	width: 200px !important;
+}
+
+.encolher {
+	background-color: gray;
+	width: 50px !important;
+}
+
+.direita {
+	float: right;
+}
+
+.quadrado {
+	height: 100px;
+	width: 100px;
+	background-color: blue;
+}
+
+.classe4{
+	height: 100px;
+	width: 100px;
+	background-color: blue;
+}
+
+.barra_progresso{
+	height: 30px;
+	width: 200px;
+	border: 1px solid #000;
+}
+
+.meu-progresso{
+	background-color: red;
+	height: 100%;
+}

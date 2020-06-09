@@ -1,0 +1,65 @@
+<script src="https://unpkg.com/vue"></script>
+
+<style>
+    .caixas {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .demo {
+        width: 100px;
+        height: 100px;
+        background-color: gray;
+    }
+
+    .c1 {
+        background-color: red;
+    }
+
+    .c2 {
+        background-color: green;
+    }
+
+    .c3 {
+        background-color: blue;
+    }
+</style>
+
+<div id="app">
+
+    <div class="caixas">
+        <!-- style atualizado dinamicamente -->
+        <div class="demo" :style="{'background-color': cor1}"></div>
+        <!-- perceba que o backgroundColor esta com CamelCase... e ele é interpretado pra background-color-->
+        <div class="demo" :style="{backgroundColor: cor2}"></div>
+        <!-- o style esta sendo resolvido dinamicamente atraves de um COMPUTED-->
+        <div class="demo" :style="meuEstilo"></div>
+    </div>
+    <hr>
+    <div class="caixas">
+        <input type="text" v-model="cor1">
+        <input type="text" v-model="cor2">
+        <input type="text" v-model="cor3">
+    </div>
+
+</div>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            cor1: "gray",
+            cor2: "gray",
+            cor3: "gray"
+        },
+        computed: {
+            meuEstilo() {
+                return {
+                    //aqui estamos pegando a COR dinamicamente
+                    backgroundColor : this.cor3,
+                    width : '100px'
+                }
+
+            }
+        }
+    })
+</script>
