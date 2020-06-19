@@ -1,0 +1,45 @@
+<meta charset="UTF8">
+<script src="https://unpkg.com/vue"></script>
+
+<div id="app">
+
+    Cores (com v-for)
+    <ul>
+        <li v-for="cor in cores">{{cor}}</v-for>
+    </ul>
+
+    <!-- estou tendo acesso aos atributos Pessoa manualmente -->
+    Pessoas
+    <template v-for="p in pessoas">
+        <h1>Nome: {{p.nome}}</h1>
+        <p>Idade: {{p.idade}}</p>
+        <hr>
+    </template>
+
+</div>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            cores: ['vermelho', 'azul', 'amarelo', 'verde'],
+            pessoas: [
+                { id: 1, nome: 'Ana', idade: 35, peso: 89 },
+                { id: 2, nome: 'Rayfran', idade: 41, peso: 79 },
+                { id: 3, nome: 'Lucas', idade: 1, peso: 14 },
+                { id: 4, nome: 'Thyago', idade: 10, peso: 40 },
+            ]
+        }
+    })
+</script>
+
+<style>
+    #app {
+        margin: 20 20 20 20;
+        font-size: 20px;
+    }
+
+    .semBullets {
+        list-style: none;
+    }
+</style>

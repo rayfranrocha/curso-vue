@@ -1,0 +1,31 @@
+<meta charset="UTF8">
+<script src="https://unpkg.com/vue"></script>
+
+<div id="app">
+
+    <p>1 a 10 com DIV (in block)</p>
+    <div v-for="n in 10" > {{n}}</div>
+    
+    <p>1 a 10 com SPAN (in line)</p>
+    <span v-for="n in 10" > {{n}}</span>
+
+</div>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+        }
+    })
+</script>
+
+<style>
+    #app {
+        margin: 20 20 20 20;
+        font-size: 20px;
+    }
+
+    .semBullets {
+        list-style: none;
+    }
+</style>

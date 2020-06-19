@@ -1,0 +1,63 @@
+<meta charset="UTF8">
+<script src="https://unpkg.com/vue"></script>
+
+<div id="app">
+    Lista manual
+    <ul>
+        <li>linha 1</li>
+        <li>linha 2</li>
+        <li>linha 3</li>
+        <li>linha 4</li>
+    </ul>
+
+    Cores (com v-for)
+    <ul>
+        <li v-for="cor in cores">{{cor}}</v-for>
+    </ul>
+
+    Pessoas
+    <ul>
+        <div v-for="p in pessoas" :entityid="p.id">
+            <li>Idade: {{p.idade}}</li>
+            <li>Nome: {{p.nome}}</li>
+            <li>Peso: {{p.peso}}</li>
+            <hr>
+        </div>
+    </ul>
+
+    Pessoas sem Bullets
+    <ul class="semBullets">
+        <div v-for="(p,i) in pessoas" :entityid="p.id">
+            <li>{{i+1}}) Idade: {{p.idade}}</li>
+            <li>Nome: {{p.nome}}</li>
+            <li>Peso: {{p.peso}}</li>
+            <hr>
+        </div>
+    </ul>
+
+</div>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            cores: ['vermelho', 'azul', 'amarelo', 'verde'],
+            pessoas: [
+                { id: 1, nome: 'Ana', idade: 35, peso: 89 },
+                { id: 2, nome: 'Rayfran', idade: 41, peso: 79 },
+                { id: 3, nome: 'Lucas', idade: 1, peso: 14 },
+                { id: 4, nome: 'Thyago', idade: 10, peso: 40 },
+            ]
+        }
+    })
+</script>
+
+<style>
+    #app {
+        margin: 20 20 20 20;
+        font-size: 20px;
+    }
+    .semBullets{
+        list-style: none;
+    }
+</style>

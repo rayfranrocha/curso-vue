@@ -1,0 +1,38 @@
+<meta charset="UTF8">
+<!-- <script src="https://unpkg.com/vue" /> -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+
+    <!-- usando div, ela vai ficar no DOM -->
+    <!-- se eu usar template nao -->
+    <div v-if="isLogado">
+        <p>Perfil: Admin</p>
+        <p>Usuario logado: {{nome}}</p>
+    </div>
+    <p v-else-if="anonimo">Usuario anonimo</p>
+    <p v-else>Nenhum usuário logado.</p>
+    <button @click="isLogado = !isLogado">{{isLogado ? 'Sair' : 'Entrar'}}</button>
+    <p>Logado? {{isLogado ? 'Sim' : 'Não'}}</p>
+    <p>Anonimo {{anonimo}}</p>
+    <input type="checkbox" v-model="anonimo"> Usuario Anônimo? </input>
+</div>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            nome: "Maria",
+            isLogado: false,
+            anonimo: true,
+        }
+    })
+</script>
+
+
+<style>
+    #app {
+        margin: 20 20 20 20;
+        font-size: 20px;
+    }
+</style>
