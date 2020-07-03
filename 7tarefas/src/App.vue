@@ -6,7 +6,7 @@
     <new-task @taskAdded="addTask" />
 
     <!-- usa a TAG como nome do componente e passa o PROPS, neste caso 'tasks' -->
-    <task-grid :tasks="tasks"></task-grid>
+    <task-grid :tasks="tasks" @taskDeleted="deleteTask"></task-grid>
   </div>
 </template>
 
@@ -23,22 +23,27 @@ export default {
     return {
       tasks: [
         { name: "Lavar louça", pending: false },
-        { name: "Comprar blusa", pending: true },
+        { name: "Comprar blusa", pending: true }
       ]
     };
   },
   methods: {
     //task é o objeto emitido pelo componente NewTask atraves de um $emit
     addTask(task) {
-      const funcaoComparcao = t => t.name.toUpperCase() === task.name.toUpperCase();
+      const funcaoComparcao = t =>
+        t.name.toUpperCase() === task.name.toUpperCase();
       const nomeNaoExiste = this.tasks.filter(funcaoComparcao).length == 0;
       if (nomeNaoExiste) {
         this.tasks.push({
-            name: task.name,
-            //o codigo abaixo verifica se o objeto possui um atributo 'pending', senão coloca true (valor padrao)
-            pending: task.pending || true
+          name: task.name,
+          //o codigo abaixo verifica se o objeto possui um atributo 'pending', senão coloca true (valor padrao)
+          pending: task.pending || true
         });
       }
+    },
+    deleteTask(task) {
+      const i = this.tasks.indexOf(task);
+      if (i >= 0) this.tasks.splice(i, 1);
     }
   }
 };

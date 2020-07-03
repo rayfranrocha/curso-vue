@@ -1,8 +1,12 @@
 <template>
   <div class="task-grid">
     <template v-if="tasks.length>0">
-      <Task v-for="task in tasks" :key="task.name" :task="task">
-      </Task>
+      <Task
+        v-for="task in tasks"
+        :key="task.name"
+        :task="task"
+        @taskDeleted="$emit('taskDeleted',$event)"
+      ></Task>
     </template>
     <p v-else class="no-task">Nenhuma tarefa a fazer. Parabéns!</p>
   </div>
@@ -20,17 +24,16 @@ export default {
 </script>
 
 <style>
-.task-grid{
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+.task-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 .task-grid .task {
-    margin: 10px;
-
+  margin: 10px;
 }
-.no-task{
-    color: #aaa;
-    font-size: 1.7rem;
+.no-task {
+  color: #aaa;
+  font-size: 1.7rem;
 }
 </style>

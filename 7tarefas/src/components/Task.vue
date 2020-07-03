@@ -1,6 +1,7 @@
 <template>
-  <div class="task" :class="stateClass">
-     {{task.name}}
+  <div class="task" :class="stateClass" @click="changeStatus(task)">
+    <span class="close" @click="$emit('taskDeleted',task)">x</span>
+    <p>{{task.name}}</p>
   </div>
 </template>
 
@@ -18,34 +19,62 @@ export default {
         done: !this.task.pending
       };
     }
+  },
+  methods: {
+    changeStatus(task) {
+      task.pending = !task.pending;
+    }
   }
 };
 </script>
 
 <style>
 .task {
-    box-sizing: border-box;
-    width: 350px;
-    height: 150px;
-    padding: 10px;
-    border-radius: 8px;
-    font-size: 2rem;
-    font-weight: 300;
-    cursor: pointer;
-    user-select: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  position: relative;
+  box-sizing: border-box;
+  width: 350px;
+  height: 150px;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 2rem;
+  font-weight: 300;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .pending {
   color: #ddd;
   border-left: 13px solid #b73229;
   background-color: #f44336;
 }
-.done{
+.done {
   color: #ddd;
   border-left: 13px solid #0a8f08;
   background-color: #4caf50;
   text-decoration: line-through;
+}
+.pending .close {
+  background: #b73229;
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+}
+.done .close {
+  background: #0a8f08;
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
 }
 </style>
