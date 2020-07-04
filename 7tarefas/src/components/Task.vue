@@ -1,6 +1,7 @@
 <template>
-  <div class="task" :class="stateClass" @click="changeStatus(task)">
-    <span class="close" @click="$emit('taskDeleted',task)">x</span>
+  <div class="task" :class="stateClass" @click="$emit('taskStatusChanged',task)">
+      <!-- perceba que esse click mais interno incluimos '.stop' pra evitar que o click seja propagado pra o click mais externo-->
+    <span class="close" @click.stop="$emit('taskDeleted',task)">x</span>
     <p>{{task.name}}</p>
   </div>
 </template>
@@ -20,11 +21,6 @@ export default {
       };
     }
   },
-  methods: {
-    changeStatus(task) {
-      task.pending = !task.pending;
-    }
-  }
 };
 </script>
 

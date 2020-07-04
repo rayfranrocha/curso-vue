@@ -6,6 +6,7 @@
         :key="task.name"
         :task="task"
         @taskDeleted="$emit('taskDeleted',$event)"
+        @taskStatusChanged="$emit('taskStatusChanged', $event)"
       ></Task>
     </template>
     <p v-else class="no-task">Nenhuma tarefa a fazer. Parabéns!</p>
